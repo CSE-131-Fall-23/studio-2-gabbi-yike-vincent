@@ -14,6 +14,7 @@ public class Ruin {
 		double winChance = in.nextDouble();
 		System.out.println("Win Limit");
 		double winLimit = in.nextDouble();
+		int losses= 0;
 		
 		for (int i = 1; i <= totalSimulations; i++) {
 			double amount= startAmount;
@@ -32,12 +33,17 @@ public class Ruin {
 			
 			if (amount==0) {
 				System.out.println("Simulation " + i + " : "+ dailyPlays +" LOSE");
+				losses+=1;
 			}
 			if (amount== winLimit) {
 				System.out.println("Simulation " + i + " : "+ dailyPlays +" WIN");
 			}
 
 		}
+		double a = ((1-winChance)/ winChance);
+		System.out.println("Losses: " + losses + " Simulations: " + totalSimulations);
+		System.out.println("Rate from Simulation: " + ((double)losses/totalSimulations) + " Expected Ruin Rate: "+  ((Math.pow(a, startAmount)-Math.pow(a, winLimit))/(1-Math.pow(a, winLimit))));
+	
 
 	}
 }
